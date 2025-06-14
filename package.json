@@ -1,10 +1,27 @@
 {
   "name": "trpc-electron-fork",
+  "version": "1.0.0",
   "license": "MIT",
   "author": {
     "name": "Par9uet",
     "email": "par9uet@qq.com"
   },
+  "exports": {
+    "./main": {
+      "types": "./dist/main.d.ts",
+      "require": "./dist/main.cjs",
+      "import": "./dist/main.mjs"
+    },
+    "./renderer": {
+      "types": "./dist/renderer.d.ts",
+      "require": "./dist/renderer.cjs",
+      "import": "./dist/renderer.mjs"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "tsc && vite build -c vite.main.config.ts && vite build -c vite.renderer.config.ts && pnpm run build:types",
     "build:types": "dts-bundle-generator --config dts-bundle-generator.config.ts && pnpm copy:types",
