@@ -26,9 +26,17 @@ export function makeAsyncResource<T>(
 ): T & AsyncDisposable {
   const it = thing as T & AsyncDisposable;
 
+  const isNativeAsyncDispose = Function.prototype.toString
+    .call(it[Symbol.asyncDispose])
+    .includes('[native code]');
+
   // eslint-disable-next-line no-restricted-syntax
-  if (it[Symbol.asyncDispose]) {
+  if (it[Symbol.asyncDispose] && !isNativeAsyncDispose) {
     throw new Error('Symbol.asyncDispose already exists');
+  }
+
+  if (isNativeAsyncDispose) {
+    return it;
   }
 
   // eslint-disable-next-line no-restricted-syntax
