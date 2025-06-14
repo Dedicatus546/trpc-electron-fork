@@ -5,7 +5,7 @@ import { defineConfig } from 'vite';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-module.exports = defineConfig({
+export default defineConfig({
   base: './',
   build: {
     minify: false,
@@ -13,9 +13,8 @@ module.exports = defineConfig({
     lib: {
       entry: resolve(__dirname, 'src', 'renderer', 'index.ts'),
       name: 'trpc-electron',
-      formats: ['es', 'cjs'],
-      fileName: format =>
-        ({ es: 'main.mjs', cjs: 'main.cjs' })[format as 'es' | 'cjs'],
+      formats: ['es'],
+      fileName: 'main',
     },
     outDir: resolve(__dirname, 'dist'),
     rollupOptions: {
