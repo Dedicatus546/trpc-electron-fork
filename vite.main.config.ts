@@ -13,7 +13,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src', 'main', 'index.ts'),
       name: 'trpc-electron',
       formats: ['es'],
-      fileName: 'renderer',
+      fileName: 'main',
     },
     outDir: resolve(__dirname, 'dist'),
     rollupOptions: {
